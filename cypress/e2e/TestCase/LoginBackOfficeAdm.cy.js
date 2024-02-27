@@ -11,10 +11,10 @@ context('Funcionalidade Login', () => {
     });
     
     it('Login com credenciais válidas', () => {
-        login.enterEmail('admin@yourstore.com');
-        login.enterPassword('admin');
+        login.enterUserAdm('sysbet_adm');
+        login.enterPassword('mnbvcxz1');
         login.submit();
-        cy.url().should('be.equal', 'https://admin-demo.nopcommerce.com/admin/');
+        cy.url().should('be.equal', 'https://backoffice.sys.bet/administrator/dashboard/online');
     });
     
 });

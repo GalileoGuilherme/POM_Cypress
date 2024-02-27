@@ -1,21 +1,21 @@
 class LoginPage {
     navigate() {
-        cy.visit('https://admin-demo.nopcommerce.com/')
+        cy.visit('https://backoffice.sys.bet/auth/login/sysbet')
     }
 
-    enterEmail(username) {
-        cy.get('#Email').clear()
-        cy.get('#Email').type(username);
+    enterUserAdm(userAdm) {
+        cy.get('#input-24').clear()
+        cy.get('#input-24').type(userAdm);
         return this
     }
 
     enterPassword(pswd) {
-        cy.get('#Password').clear().type(pswd)
+        cy.get('#password').clear().type(pswd)
         return this
     }
 
     submit() {
-        cy.get('.button-1').click()
+        cy.get('.v-card__actions > .v-btn').click()
     }
 }
-export default LoginPage;
+export default LoginPage
