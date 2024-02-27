@@ -1,10 +1,11 @@
 /// <reference types="cypress" />
 
 import LoginPage from "./PageObject/LoginPage";
-const login = new LoginPage();
 
 context('Funcionalidade Login', () => {
-
+    
+    const login = new LoginPage();
+    
     beforeEach(() => {
         login.navigate();
     });
