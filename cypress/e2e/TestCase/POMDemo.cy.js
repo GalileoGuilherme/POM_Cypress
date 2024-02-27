@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-import LoginPage from "./PageObject/LoginPage";
+import LoginPage from "../PageObject/LoginPage";
 
 context('Funcionalidade Login', () => {
     
