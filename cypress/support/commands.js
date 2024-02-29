@@ -23,3 +23,22 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('loginAdmViaApi', (login, senha) => {
+    let token_jwt = ''
+    cy.request({
+        method: 'POST',
+        url: 'https://apidev.sga.bet/auth/login',
+        headers: {
+            'x-api-key': '02ff96c8f50ce6a488812146d448a04b2e2358dd45d0dbb59824'
+        },
+        form: true,
+        body: {
+            operator_code: 'Sysbet',
+            login: login,
+            password: senha
+        }
+    }).then((response) =>{
+        token_jwt = response.body.token_jwt
+        cy.wrap(token_jwt).as('tokenAdm')
+    })
+})

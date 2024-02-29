@@ -5,15 +5,24 @@ describe('Login - API backOffice', () => {
         cy.request({
             method: 'POST',
             url: 'https://apidev.sga.bet/auth/login',
-            body: {
-                "login": "sysbet_adm",
-                "password": "mnbvcxz1",
-                "operator_code": "Sysbet"
+            headers: {
+                'x-api-key': '02ff96c8f50ce6a488812146d448a04b2e2358dd45d0dbb59824'
             },
-            headers: {authorization: '02ff96c8f50ce6a488812146d448a04b2e2358dd45d0dbb59824'}
+            form: true,
+            body: {
+                operator_code: 'Sysbet',
+                login: 'sysbet_adm',
+                password: 'mnbvcxz1'
+            }
         }).then((response) => {
-            expect(response.status).to.equal(200);
-            // expect(response.body.message).to.equal("Login realizado com sucesso");
+            
+            cy.log(response.body.token_jwt);
+            expect(response.body.user_data.login).to.equal("sysbet_adm")
+
         })
     });
 });
+
+
+
+
