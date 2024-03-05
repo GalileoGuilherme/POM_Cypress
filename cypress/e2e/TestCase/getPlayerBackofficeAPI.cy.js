@@ -1,9 +1,11 @@
 /// <reference types="cypress" />
 
 describe('getPlayer - API backOffice', () => {
+    
     beforeEach(() =>{
         cy.loginAdmViaApi('sysbet_adm', 'mnbvcxz1')
-    }) 
+    })
+
     it ('Deve retornar o player com login "alienmb"',  () => {
         cy.get('@tokenAdm').then(token_jwt =>{
             cy.log("Buscando pelo id 719464, deve pertencer ao login alienmb")
@@ -25,6 +27,7 @@ describe('getPlayer - API backOffice', () => {
         })
         
     })
+
     it ('Deve retornar player não encontrado',  () =>{
         cy.get('@tokenAdm').then(token_jwt => {
             cy.log("Buscando por um id vazio, não deve encontrar nenhum player")

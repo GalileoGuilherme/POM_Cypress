@@ -1,4 +1,4 @@
-class LoginPage {
+class LoginPageBackOffice {
     navigate() {
         cy.visit('https://backoffice.sys.bet/auth/login/sysbet')
     }
@@ -18,4 +18,4 @@ class LoginPage {
         cy.get('.v-card__actions > .v-btn').click()
     }
 }
-export default LoginPage
+export default LoginPageBackOffice;
