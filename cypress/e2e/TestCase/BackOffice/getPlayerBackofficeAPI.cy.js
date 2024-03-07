@@ -7,7 +7,8 @@ describe('getPlayer - API backOffice', () => {
         cy.loginAndGetToken();
         
         // Visitar a página após o login
-        cy.visit('https://backoffice.sys.bet/administrator/dashboard/online');
+        cy.visit('https://backoffice.sys.bet/auth/login/sysbet');
+        cy.log('foi');
     });
     
     it('Deve retornar o player com login "alienmb"', () => {
