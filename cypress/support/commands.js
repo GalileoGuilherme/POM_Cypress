@@ -1,31 +1,5 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 Cypress.Commands.add('loginAdmViaApi', (login, senha) => {
-    let token_jwt = ''
-    cy.request({
+    return cy.request({
         method: 'POST',
         url: 'https://apidev.sga.bet/auth/login',
         headers: {
@@ -38,7 +12,17 @@ Cypress.Commands.add('loginAdmViaApi', (login, senha) => {
             password: senha
         }
     }).then((response) =>{
-        token_jwt = response.body.token_jwt
-        cy.wrap(token_jwt).as('tokenAdm')
-    })
-})
+        const token_jwt = response.body.token_jwt;
+        // Retorna o token JWT para que ele possa ser usado posteriormente
+        return token_jwt;
+    });
+});
+
+Cypress.Commands.add('loginAndGetToken', () => {
+    cy.loginAdmViaApi('sysbet_adm', 'mnbvcxz1').then((token) => {
+        // Define o alias @tokenAdm com o token retornado
+        cy.wrap(token).as('tokenAdm');
+        // Armazena o token retornado
+        Cypress.env('authToken', token);
+    });
+});
